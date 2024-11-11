@@ -13,6 +13,18 @@ M.base46 = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
   },
+  hl_add = {
+    TreesitterContextBottom = {
+      -- bold = true,
+      italic = true,
+      underline = true,
+      sp = "#A0A0A0",
+    },
+    -- TreesitterContextLineNumberBottom = {
+    --   underline = true,
+    --   sp = "grey",
+    -- },
+  },
 }
 
 M.nvdash = {
