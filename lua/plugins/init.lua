@@ -18,7 +18,6 @@ return {
     opts = {
       ensure_installed = {
         "clangd",
-        "clang-format",
         "prettier",
         "prettierd",
         "pyright",

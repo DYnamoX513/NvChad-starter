@@ -1,10 +1,10 @@
--- load defaults i.e lua_lsp
+-- load defaults i.e. lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
 
 -- local servers = { "pyright", "ruff_lsp", "clangd" }
-local servers = { "rust_analyzer" }
+local servers = { "rust_analyzer", "harper_ls" }
 local nvlsp = require "nvchad.configs.lspconfig"
 local on_attach = nvlsp.on_attach
 local on_init = nvlsp.on_init
@@ -19,7 +19,7 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-require("lspconfig").pyright.setup {
+lspconfig.pyright.setup {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
@@ -37,14 +37,12 @@ require("lspconfig").pyright.setup {
   },
 }
 
-local ruff_on_attach = function(client, bufnr)
-  on_attach(client, bufnr)
-  -- Disable hover in favor of Pyright
-  client.server_capabilities.hoverProvider = false
-end
-
-require("lspconfig").ruff.setup {
-  on_attach = ruff_on_attach,
+lspconfig.ruff.setup {
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    -- Disable hover in favor of Pyright
+    client.server_capabilities.hoverProvider = false
+  end,
   on_init = on_init,
   capabilities = capabilities,
 }
@@ -63,5 +61,15 @@ lspconfig.clangd.setup {
     "--fallback-style=llvm",
     "--log=error",
     -- "--query-driver=/opt/homebrew/opt/gcc@13"
+  },
+}
+
+lspconfig.harper_ls.setup {
+  settings = {
+    ["harper-ls"] = {
+      linters = {
+        sentence_capitalization = false,
+      },
+    },
   },
 }
