@@ -60,6 +60,7 @@ lspconfig.clangd.setup {
     "--function-arg-placeholders",
     "--fallback-style=llvm",
     "--log=error",
+    "--offset-encoding=utf-16",
     -- "--query-driver=/opt/homebrew/opt/gcc@13"
   },
 }
