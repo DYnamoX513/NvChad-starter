@@ -21,7 +21,6 @@ o.shell = "fish"
 if vim.g.neovide then
   vim.print("Neovide " .. vim.g.neovide_version)
   vim.o.guifont = "IosevkaTerm Nerd Font:h14"
-  vim.g.neovide_input_macos_option_key_is_meta = "only_left"
   -- vim.o.guifont = "BlexMono Nerd Font:h13"
   -- Put anything you want to happen only in Neovide here
 end
