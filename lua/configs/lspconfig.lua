@@ -1,21 +1,45 @@
+local nvlsp = require "nvchad.configs.lspconfig"
 -- load defaults i.e. lua_lsp
-require("nvchad.configs.lspconfig").defaults()
+nvlsp.defaults()
 
 local lspconfig = require "lspconfig"
 
 -- local servers = { "pyright", "ruff_lsp", "clangd" }
-local servers = { "rust_analyzer" }
-local nvlsp = require "nvchad.configs.lspconfig"
-local on_attach = nvlsp.on_attach
+local servers = { "lua_ls", "rust_analyzer" }
 local on_init = nvlsp.on_init
 local capabilities = nvlsp.capabilities
+
+local trouble_symbols = require("trouble").statusline {
+  mode = "lsp_document_symbols",
+  groups = {},
+  title = false,
+  filter = { range = true },
+  format = "/ {kind_icon}{symbol.name:Normal}",
+  hl_group = "WinBar",
+}
+
+GetWinbar = function()
+  if trouble_symbols.has() then
+    return "󰼁 " .. trouble_symbols.get()
+  else
+    return "󰼂 "
+    -- return vim.fn.expand('%:t')
+  end
+end
+
+local on_attach = function(client, bufnr)
+  if client.server_capabilities.documentSymbolProvider then
+    vim.wo.winbar = [[ %{%v:lua.GetWinbar()%}]]
+  end
+  nvlsp.on_attach(client, bufnr)
+end
 
 -- lsp with default config
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
+    on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
   }
 end
 
@@ -66,7 +90,7 @@ lspconfig.clangd.setup {
 }
 
 lspconfig.harper_ls.setup {
-  on_attach = on_attach,
+  on_attach = nvlsp.on_attach,
   on_init = on_init,
   capabilities = capabilities,
   settings = {

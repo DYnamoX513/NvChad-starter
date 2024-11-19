@@ -38,7 +38,7 @@ M.ui = {
     theme = "vscode_colored", -- default/vscode/vscode_colored/minimal
     order = { "mode", "file", "git", "%=", "ff", "lsp_msg", "%=", "diagnostics", "lsp", "cursor", "en", "cwd" },
     modules = {
-      f = "%f",
+      -- f = "%f",
       ff = function()
         local buf = vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
         local path = vim.api.nvim_buf_get_name(buf)
@@ -59,7 +59,7 @@ M.ui = {
 
       en = function()
         local encode = vim.bo.fileencoding
-        return "∾ " .. encode:upper() .. " "
+        return "󰦨 " .. encode:upper() .. " "
       end,
     },
   },
