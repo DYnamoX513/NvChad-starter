@@ -43,4 +43,4 @@ vim.keymap.set("n", "<C-->", function()
 end, { desc = "neovide scale down 10%" })
 vim.keymap.set("n", "<C-0>", function()
   vim.g.neovide_scale_factor = 1.0
-end, { desc = "reset neovide scale factor" })
+end, { desc = "neovide scale factor reset" })
