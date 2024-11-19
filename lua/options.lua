@@ -24,3 +24,8 @@ if vim.g.neovide then
   -- vim.o.guifont = "BlexMono Nerd Font:h13"
   -- Put anything you want to happen only in Neovide here
 end
+
+if #vim.api.nvim_list_uis() == 0 then
+  print "Running in headless mode"
+  vim.o.guifont = "IosevkaTerm Nerd Font:h14"
+end
