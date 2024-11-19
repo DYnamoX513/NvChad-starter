@@ -5,7 +5,8 @@ nvlsp.defaults()
 local lspconfig = require "lspconfig"
 
 -- local servers = { "pyright", "ruff_lsp", "clangd" }
-local servers = { "lua_ls", "rust_analyzer" }
+local servers = { "rust_analyzer" }
+local on_attach = nvlsp.on_attach
 local on_init = nvlsp.on_init
 local capabilities = nvlsp.capabilities
 
@@ -27,12 +28,14 @@ GetWinbar = function()
   end
 end
 
-local on_attach = function(client, bufnr)
-  if client.server_capabilities.documentSymbolProvider then
-    vim.wo.winbar = [[ %{%v:lua.GetWinbar()%}]]
-  end
-  nvlsp.on_attach(client, bufnr)
-end
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client.server_capabilities.documentSymbolProvider then
+      vim.wo.winbar = [[ %{%v:lua.GetWinbar()%}]]
+    end
+  end,
+})
 
 -- lsp with default config
 for _, lsp in ipairs(servers) do
