@@ -42,16 +42,7 @@ return {
       },
     },
     icons = {
-      kinds = {
-        Constant = "󱥌 ",
-        Enum = "󰆩 ",
-        EnumMember = "󰆩 ",
-        Method = "󰆧 ",
-        Module = "󰏗 ",
-        Function = "󰡱 ",
-        Package = "󰏗 ",
-        Variable = "󰫧 ",
-      },
+      kinds = require "configs.symbol_icon",
     },
   }, -- for default options, refer to the configuration section for custom setup.
   cmd = "Trouble",

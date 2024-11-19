@@ -61,5 +61,4 @@ return {
   { "Civitasv/cmake-tools.nvim", ft = { "cmake", "cpp", "c" } },
 
   require "configs.trouble",
-
 }
