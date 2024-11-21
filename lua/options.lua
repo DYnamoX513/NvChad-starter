@@ -18,16 +18,18 @@ o.scrolloff = 4
 o.sidescrolloff = 4
 o.shell = "fish"
 
+local neovide_settings = function()
+  vim.o.guifont = "Iosevka SS08,Symbols Nerd Font:h13"
+  vim.g.neovide_input_macos_option_key_is_meta = "only_left"
+end
+
 if vim.g.neovide then
   vim.print("Neovide " .. vim.g.neovide_version)
-  vim.o.guifont = "IosevkaTerm Nerd Font:h14"
-  vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
-  -- vim.o.guifont = "BlexMono Nerd Font:h13"
   -- Put anything you want to happen only in Neovide here
+  neovide_settings()
 end
 
 if #vim.api.nvim_list_uis() == 0 then
   print "Running in headless mode"
-  vim.o.guifont = "IosevkaTerm Nerd Font:h14"
-  vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
+  neovide_settings()
 end

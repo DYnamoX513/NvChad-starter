@@ -21,9 +21,9 @@ local trouble_symbols = require("trouble").statusline {
 
 GetWinbar = function()
   if trouble_symbols.has() then
-    return "󰼁 " .. trouble_symbols.get()
+    return "󰼂 " .. trouble_symbols.get()
   else
-    return "󰼂 "
+    return "󰼁 "
     -- return vim.fn.expand('%:t')
   end
 end
