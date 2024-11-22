@@ -9,12 +9,12 @@ map("i", "jk", "<ESC>")
 
 local tele = require "telescope.builtin"
 -- LSP document symbols
-map("", "<leader>fs", tele.lsp_document_symbols, {
+map("n", "<leader>fs", tele.lsp_document_symbols, {
   desc = "telescope LSP document symbols",
 })
 
 -- Find keys
-map("", "<leader>fk", tele.keymaps, {
+map("n", "<leader>fk", tele.keymaps, {
   desc = "telescope find keymaps",
 })
 
@@ -24,9 +24,19 @@ map("n", "[c", function()
 end, { silent = true, desc = "Jump to context start" })
 
 -- Conform
--- map("", "<leader>F", function()
---   require("conform").format { async = true, lsp_fallback = true }
--- end, { desc = "Format buffer" })
+map({ "n", "v" }, "<leader>F", function()
+  require("conform").format { async = true, lsp_fallback = true }
+end, { desc = "Conform Format" })
+
+-- lazygit
+map({ "n", "t" }, "<A-g>", function()
+  require("nvchad.term").toggle {
+    pos = "float",
+    id = "flg",
+    cmd = "lazygit",
+    float_opts = { relative = "win", width = 0.8, height = 0.8 },
+  }
+end, { desc = "terminal toggle lazygit " })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
