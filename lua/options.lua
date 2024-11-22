@@ -18,6 +18,8 @@ o.scrolloff = 4
 o.sidescrolloff = 4
 o.shell = "fish"
 
+o.fileencodings = "ucs-bom,utf-8,gb18030,latin1"
+
 local neovide_settings = function()
   vim.o.guifont = "Iosevka SS08,Symbols Nerd Font:h13"
   vim.g.neovide_input_macos_option_key_is_meta = "only_left"
