@@ -34,7 +34,7 @@ map({ "n", "t" }, "<A-g>", function()
     pos = "float",
     id = "flg",
     cmd = "lazygit",
-    float_opts = { relative = "win", width = 0.8, height = 0.8 },
+    float_opts = { relative = "win", width = 0.8, height = 0.8, row = 0.05, col = 0.1 },
   }
 end, { desc = "terminal toggle lazygit " })
 
