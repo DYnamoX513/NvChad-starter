@@ -70,7 +70,7 @@ return {
     {
       "<leader>tl",
       "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-      desc = "Tourble LSP Definitions / references / ...",
+      desc = "Trouble LSP Definitions / references / ...",
     },
     {
       "<leader>tL",
@@ -81,6 +81,16 @@ return {
       "<leader>tQ",
       "<cmd>Trouble qflist toggle<cr>",
       desc = "Trouble Quickfix List",
+    },
+    {
+      "<leader>tt",
+      "<cmd>Trouble telescope toggle<cr>",
+      desc = "Trouble Last telescope list",
+    },
+    {
+      "<leader>tT",
+      "<cmd>Trouble telescope_files toggle<cr>",
+      desc = "Trouble Last telescope file list",
     },
   },
 }
