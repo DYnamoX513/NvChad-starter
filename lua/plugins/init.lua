@@ -1,7 +1,14 @@
 return {
+  { -- required by telescope & LSP, see telescope.lua
+    "folke/trouble.nvim",
+    cmd = "Trouble",
+    opts = require("configs.trouble").opts,
+    keys = require("configs.trouble").keys,
+  },
+
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -59,6 +66,4 @@ return {
   },
 
   { "Civitasv/cmake-tools.nvim", ft = { "cmake", "cpp", "c" } },
-
-  require "configs.trouble",
 }
