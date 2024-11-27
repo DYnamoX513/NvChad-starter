@@ -65,5 +65,19 @@ return {
     },
   },
 
-  { "Civitasv/cmake-tools.nvim", ft = { "cmake", "cpp", "c" } },
+  {
+    "Civitasv/cmake-tools.nvim",
+    ft = { "cmake", "cpp", "c" },
+  },
+
+  {
+    "stevearc/dressing.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- select = {
+      --   enabled = true,
+      --   backend = "builtin", telescope
+      -- },
+    },
+  },
 }
