@@ -4,10 +4,16 @@ local options = {
   formatters_by_ft = {
     lua = { "stylua" },
 
-    javascript = { "prettierd", "prettier", stop_after_first = true },
-    css = { "prettierd", "prettier", stop_after_first = true },
-    html = { "prettierd", "prettier", stop_after_first = true },
-    json = { "prettierd", "prettier", stop_after_first = true },
+    -- javascript = { "prettierd", "prettier", stop_after_first = true },
+    -- css = { "prettierd", "prettier", stop_after_first = true },
+    -- html = { "prettierd", "prettier", stop_after_first = true },
+    -- json = { "prettierd", "prettier", stop_after_first = true },
+
+    -- no prettierd
+    javascript = { "prettier" },
+    css = { "prettier" },
+    html = { "prettier" },
+    json = { "prettier" },
 
     -- cpp = { "clang-format" },
     -- use ruff-lsp

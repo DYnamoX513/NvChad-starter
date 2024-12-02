@@ -26,7 +26,6 @@ return {
       ensure_installed = {
         "clangd",
         "prettier",
-        "prettierd",
         "pyright",
         "ruff",
       },
