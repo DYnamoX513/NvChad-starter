@@ -67,6 +67,7 @@ return {
   {
     "Civitasv/cmake-tools.nvim",
     ft = { "cmake", "cpp", "c" },
+    opts = {},
   },
 
   {
