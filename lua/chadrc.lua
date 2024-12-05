@@ -166,7 +166,10 @@ M.ui = {
       -- file encoding
       en = function()
         local encode = vim.bo.fileencoding
-        return "%#StText#󰴓 " .. encode:upper() .. " "
+        if #encode > 0 then
+          return "%#StText#󰴓 " .. encode:upper() .. " "
+        end
+        return ""
       end,
     },
   },
