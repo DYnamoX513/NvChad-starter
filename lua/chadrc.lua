@@ -14,8 +14,9 @@ M.base46 = {
     ["@comment"] = { italic = true },
   },
   hl_add = {
+    -- for seed icon (format_on_save)
     St_seed = {
-      fg = "#806040",
+      fg = "#607560",
       -- see ~/.local/share/nvim/lazy/base46/lua/base46/integrations/statusline/vscode_colored.lua
       bg = { "statusline_bg", 1 },
     },
@@ -89,24 +90,28 @@ end
 
 M.ui = {
   statusline = {
-    theme = "vscode_colored", -- default/vscode/vscode_colored/minimal
+    -- theme = "vscode_colored", -- default/vscode/vscode_colored/minimal
     order = {
       "mode",
       "file",
       "git",
       "%=",
-      "fos",
+      "fos", -- format_on_save
       "ff",
+      "lc",
       "lsp_msg",
       "%=",
       "diagnostics",
-      "lsp",
-      "cursor",
+      "lsp_all",
       "en",
-      "cwd",
+      -- "lsp",
+      -- "cursor",
+      -- "cwd",
     },
     modules = {
       -- f = "%f",
+
+      -- dynamic relative_path
       ff = function()
         local buf = vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
         local path = vim.api.nvim_buf_get_name(buf)
@@ -116,22 +121,52 @@ M.ui = {
 
         local relative_path = vim.fn.fnamemodify(path, ":.")
 
-        -- truncated
-        if #relative_path > 40 then
+        -- further truncated
+        if vim.o.columns < 60 then
+          return "..."
+        end
+        -- filename only
+        if vim.o.columns < 100 or #relative_path > 50 then
           local filename = vim.fn.fnamemodify(path, ":t")
-          return "..." .. filename
+          return ".../" .. filename
         end
 
         return relative_path
       end,
 
+      -- format_on_save status
       fos = function()
-        return "%#St_seed#" .. fos_status() .. "%X" .. "%#StText#" -- reset
+        return "%#St_seed#" .. fos_status() .. "%X" .. "%#StText# " -- reset
       end,
 
+      -- all attached LSPs
+      lsp_all = function()
+        if rawget(vim, "lsp") then
+          local buf = vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
+          local clients = {}
+          for _, client in ipairs(vim.lsp.get_clients()) do
+            if client.attached_buffers[buf] then
+              table.insert(clients, client.name)
+            end
+          end
+          if #clients > 0 then
+            if vim.o.columns > 100 then
+              return "%#St_Lsp#󰟥 " .. table.concat(clients, "/") .. " "
+            else
+              return "%#St_Lsp#󰟥 " .. #clients .. " "
+            end
+          end
+        end
+        return ""
+      end,
+
+      -- line-column
+      lc = " %3l,%-3c",
+
+      -- file encoding
       en = function()
         local encode = vim.bo.fileencoding
-        return "󰦨 " .. encode:upper() .. " "
+        return "%#StText#󰴓 " .. encode:upper() .. " "
       end,
     },
   },
