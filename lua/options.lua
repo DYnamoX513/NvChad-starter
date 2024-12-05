@@ -35,3 +35,20 @@ if #vim.api.nvim_list_uis() == 0 then
   print "Running in headless mode"
   neovide_settings()
 end
+
+if string.match(vim.fn.getenv "PATH", "orbstack%-guest") ~= nil then
+  vim.print "inside orbstack"
+  -- MacOS pbcopy & pbpaste available
+  vim.g.clipboard = {
+    name = "pbcopy",
+    copy = {
+      ["+"] = "pbcopy",
+      ["*"] = "pbcopy",
+    },
+    paste = {
+      ["+"] = "pbpaste",
+      ["*"] = "pbpaste",
+    },
+    cache_enabled = 0,
+  }
+end
