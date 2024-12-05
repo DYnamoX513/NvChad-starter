@@ -80,4 +80,11 @@ return {
       -- },
     },
   },
+
+  -- Neovim doesn't support builtin block comment as of 0.10
+  {
+    "numToStr/Comment.nvim",
+    lazy = false,
+    opts = {},
+  },
 }
