@@ -13,6 +13,18 @@ map("n", "<leader>fs", tele.lsp_document_symbols, {
   desc = "telescope LSP document symbols",
 })
 
+-- Document diagnostics
+map("n", "<leader>fd", function()
+  tele.diagnostics { bufnr = 0 }
+end, {
+  desc = "telescope document diagnostics",
+})
+
+-- Workspace diagnostics
+map("n", "<leader>fD", tele.diagnostics, {
+  desc = "telescope workspace diagnostics",
+})
+
 -- Find keys
 map("n", "<leader>fk", tele.keymaps, {
   desc = "telescope find keymaps",
