@@ -5,7 +5,7 @@ nvlsp.defaults()
 local lspconfig = require "lspconfig"
 
 -- local servers = { "pyright", "ruff_lsp", "clangd" }
-local servers = { "rust_analyzer" }
+local servers = { "rust_analyzer", "nil_ls" }
 local on_attach = nvlsp.on_attach
 local on_init = nvlsp.on_init
 local capabilities = nvlsp.capabilities
@@ -91,6 +91,14 @@ lspconfig.clangd.setup {
     -- "--query-driver=/opt/homebrew/opt/gcc@13"
   },
 }
+
+-- lspconfig.ccls.setup {
+--   init_options = {
+--     cache = {
+--       directory = ".ccls-cache",
+--     },
+--   },
+-- }
 
 lspconfig.harper_ls.setup {
   on_attach = nvlsp.on_attach,
