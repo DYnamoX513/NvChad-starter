@@ -20,6 +20,14 @@ o.shell = "fish"
 
 o.fileencodings = "ucs-bom,utf-8,gb18030,latin1"
 
+-- Show line diagnostics automatically in hover window
+-- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+--   group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
+--   callback = function()
+--     vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+--   end,
+-- })
+
 local neovide_settings = function()
   vim.o.guifont = "Iosevka SS08,Symbols Nerd Font:h13"
   vim.g.neovide_input_macos_option_key_is_meta = "only_left"
