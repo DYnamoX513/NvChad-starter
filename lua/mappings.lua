@@ -15,7 +15,7 @@ map("n", "<leader>fs", tele.lsp_document_symbols, {
 
 -- Document diagnostics
 map("n", "<leader>fd", function()
-  tele.diagnostics { bufnr = 0 }
+  tele.diagnostics { bufnr = 0, sort_by = "severity" }
 end, {
   desc = "telescope document diagnostics",
 })
