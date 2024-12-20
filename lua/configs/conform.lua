@@ -14,10 +14,13 @@ local options = {
     css = { "prettier" },
     html = { "prettier" },
     json = { "prettier" },
-
     -- cpp = { "clang-format" },
-    -- use ruff-lsp
     -- python = { "isort", "black" },
+
+    -- use ruff, organizing imports together with format
+    python = { "ruff_format", "ruff_organize_imports" },
+    -- As of Dec 2024, ruff linting and formatting haven't been unified yet
+    -- https://github.com/astral-sh/ruff/issues/8232
 
     sh = { "shfmt" },
   },
