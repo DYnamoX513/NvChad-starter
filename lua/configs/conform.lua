@@ -23,6 +23,7 @@ local options = {
     -- https://github.com/astral-sh/ruff/issues/8232
 
     sh = { "shfmt" },
+    nix = { "alejandra" },
   },
 
   default_format_opts = {
