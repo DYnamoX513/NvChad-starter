@@ -92,6 +92,22 @@ lspconfig.clangd.setup {
   },
 }
 
+lspconfig.neocmake.setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  cmd = { "neocmakelsp", "--stdio" },
+  init_options = {
+    format = {
+      enable = true,
+    },
+    lint = {
+      enable = true,
+    },
+    scan_cmake_in_package = true, -- default is true
+  },
+}
+
 -- lspconfig.ccls.setup {
 --   init_options = {
 --     cache = {
