@@ -5,7 +5,7 @@ nvlsp.defaults()
 local lspconfig = require "lspconfig"
 
 -- local servers = { "pyright", "ruff_lsp", "clangd" }
-local servers = { "rust_analyzer", "nil_ls" }
+local servers = { "rust_analyzer", "nil_ls", "nixd" }
 local on_attach = nvlsp.on_attach
 local on_init = nvlsp.on_init
 local capabilities = nvlsp.capabilities
