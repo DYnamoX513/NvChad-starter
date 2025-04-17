@@ -1,14 +1,7 @@
-local nvlsp = require "nvchad.configs.lspconfig"
--- load defaults i.e. lua_lsp
-nvlsp.defaults()
+require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
-
--- local servers = { "pyright", "ruff_lsp", "clangd" }
-local servers = { "rust_analyzer", "nil_ls", "nixd" }
-local on_attach = nvlsp.on_attach
-local on_init = nvlsp.on_init
-local capabilities = nvlsp.capabilities
+local servers = { "clangd", "harper_ls", "neocmake", "pyright", "ruff", "rust_analyzer", "nil_ls", "nixd" }
+vim.lsp.enable(servers)
 
 local trouble_symbols = require("trouble").statusline {
   mode = "lsp_document_symbols",
@@ -36,96 +29,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
-
--- lsp with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  }
-end
-
-lspconfig.ruff.setup {
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    -- Disable hover in favor of Pyright
-    client.server_capabilities.hoverProvider = false
-  end,
-  on_init = on_init,
-  capabilities = capabilities,
-}
-
-lspconfig.pyright.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  settings = {
-    pyright = {
-      -- Using Ruff's import organizer
-      disableOrganizeImports = true,
-    },
-    python = {
-      analysis = {
-        -- Ignore all files for analysis to exclusively use Ruff for linting
-        ignore = { "*" },
-      },
-    },
-  },
-}
-
-lspconfig.clangd.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  cmd = {
-    "clangd",
-    "--background-index",
-    "--clang-tidy",
-    "--header-insertion=iwyu",
-    "--completion-style=detailed",
-    "--function-arg-placeholders",
-    "--fallback-style=llvm",
-    "--log=error",
-    "--offset-encoding=utf-16",
-    -- "--query-driver=/opt/homebrew/opt/gcc@13"
-  },
-}
-
-lspconfig.neocmake.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  cmd = { "neocmakelsp", "--stdio" },
-  init_options = {
-    format = {
-      enable = true,
-    },
-    lint = {
-      enable = true,
-    },
-    scan_cmake_in_package = true, -- default is true
-  },
-}
-
--- lspconfig.ccls.setup {
---   init_options = {
---     cache = {
---       directory = ".ccls-cache",
---     },
---   },
--- }
-
-lspconfig.harper_ls.setup {
-  on_attach = nvlsp.on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  settings = {
-    ["harper-ls"] = {
-      linters = {
-        sentence_capitalization = false,
-        long_sentences = false,
-      },
-    },
-  },
-}
