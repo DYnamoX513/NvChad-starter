@@ -1,6 +1,60 @@
 require("nvchad.configs.lspconfig").defaults()
 
 local servers = { "clangd", "harper_ls", "neocmake", "pyright", "ruff", "rust_analyzer", "nil_ls", "nixd" }
+
+vim.lsp.config("clangd", {
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--clang-tidy",
+    "--header-insertion=iwyu",
+    "--completion-style=detailed",
+    "--function-arg-placeholders",
+    "--fallback-style=llvm",
+    "--log=error",
+    "--offset-encoding=utf-16",
+  },
+})
+
+vim.lsp.config("harper_ls", {
+  settings = {
+    ["harper-ls"] = {
+      linters = {
+        sentence_capitalization = false,
+        long_sentences = false,
+      },
+    },
+  },
+})
+
+vim.lsp.config("neocmake", {
+  cmd = { "neocmakelsp", "--stdio" },
+  init_options = {
+    format = {
+      enable = true,
+    },
+    lint = {
+      enable = true,
+    },
+    scan_cmake_in_package = true, -- default is true
+  },
+})
+
+vim.lsp.config("pyright", {
+  settings = {
+    pyright = {
+      -- Using Ruff's import organizer
+      disableOrganizeImports = true,
+    },
+    python = {
+      analysis = {
+        -- Ignore all files for analysis to exclusively use Ruff for linting
+        ignore = { "*" },
+      },
+    },
+  },
+})
+
 vim.lsp.enable(servers)
 
 local trouble_symbols = require("trouble").statusline {
