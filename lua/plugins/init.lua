@@ -20,6 +20,9 @@ return {
     end,
   },
 
+
+  { "RRethy/vim-illuminate", event = "BufReadPost" },
+
   {
     "williamboman/mason.nvim",
     opts = {

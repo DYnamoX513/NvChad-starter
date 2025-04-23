@@ -20,6 +20,17 @@ o.shell = "fish"
 
 o.fileencodings = "ucs-bom,utf-8,gb18030,latin1"
 
+vim.diagnostic.config {
+  -- Use the default configuration
+  -- virtual_lines = true,
+
+  -- Alternatively, customize specific options
+  -- virtual_lines = {
+  --  -- Only show virtual line diagnostics for the current cursor line
+  --  current_line = true,
+  -- },
+}
+
 -- Show line diagnostics automatically in hover window
 -- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 --   group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),

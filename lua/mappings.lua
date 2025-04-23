@@ -7,6 +7,11 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
+map("n", "gK", function()
+  local new_config = not vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config { virtual_lines = new_config }
+end, { desc = "Toggle diagnostic virtual_lines" })
+
 local tele = require "telescope.builtin"
 -- LSP document symbols
 map("n", "<leader>fs", tele.lsp_document_symbols, {
