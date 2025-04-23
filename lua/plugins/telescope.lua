@@ -9,8 +9,8 @@ return {
   opts = {
     defaults = {
       mappings = {
-        i = { ["<C-t>"] = { open_with_trouble, opts = { desc = "open_with_trouble" } } },
-        n = { ["<C-t>"] = { open_with_trouble, opts = { desc = "open_with_trouble" } } },
+        i = { ["<C-t>"] = { open_with_trouble, type = "action", opts = { desc = "open_with_trouble" } } },
+        n = { ["<C-t>"] = { open_with_trouble, type = "action", opts = { desc = "open_with_trouble" } } },
       },
     },
   },
