@@ -20,7 +20,6 @@ return {
     end,
   },
 
-
   { "RRethy/vim-illuminate", event = "BufReadPost" },
 
   {
@@ -71,17 +70,6 @@ return {
     "Civitasv/cmake-tools.nvim",
     ft = { "cmake", "cpp", "c" },
     opts = {},
-  },
-
-  {
-    "stevearc/dressing.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- select = {
-      --   enabled = true,
-      --   backend = "builtin", telescope
-      -- },
-    },
   },
 
   -- Neovim doesn't support builtin block comment as of 0.10
