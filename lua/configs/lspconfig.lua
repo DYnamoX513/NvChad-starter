@@ -20,8 +20,7 @@ vim.lsp.config("harper_ls", {
   settings = {
     ["harper-ls"] = {
       linters = {
-        sentence_capitalization = false,
-        long_sentences = false,
+        SentenceCapitalization = false,
       },
     },
   },
