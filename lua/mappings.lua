@@ -46,14 +46,17 @@ map({ "n", "v" }, "<leader>F", function()
 end, { desc = "Conform Format" })
 
 -- lazygit
+-- map({ "n", "t" }, "<A-g>", function()
+--   require("nvchad.term").toggle {
+--     pos = "float",
+--     id = "flg",
+--     cmd = "lazygit",
+--     float_opts = { relative = "editor", width = 0.8, height = 0.8, row = 0.05, col = 0.1 },
+--   }
+-- end, { desc = "terminal toggle lazygit " })
 map({ "n", "t" }, "<A-g>", function()
-  require("nvchad.term").toggle {
-    pos = "float",
-    id = "flg",
-    cmd = "lazygit",
-    float_opts = { relative = "editor", width = 0.8, height = 0.8, row = 0.05, col = 0.1 },
-  }
-end, { desc = "terminal toggle lazygit " })
+  require("snacks").lazygit()
+end, { desc = "snacks lazygit " })
 
 -- Keyboard users
 vim.keymap.set("n", "<C-t>", function()
