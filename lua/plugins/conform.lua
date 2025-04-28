@@ -1,4 +1,4 @@
-local prettier = "prettier"
+local prettier = { "prettier" }
 local prettierd = { "prettierd", "prettier", stop_after_first = true }
 
 return {

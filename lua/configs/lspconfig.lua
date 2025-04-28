@@ -12,7 +12,7 @@ vim.lsp.config("clangd", {
     "--function-arg-placeholders=1",
     "--fallback-style=llvm",
     "--log=error",
-    -- "--offset-encoding=utf-16",
+    "--offset-encoding=utf-16",
   },
 })
 

@@ -24,6 +24,7 @@ return {
     "fos", -- format_on_save
     "ff",
     "lc",
+    "codeium",
     "lsp_msg",
     "%=",
     "diagnostics",
@@ -87,6 +88,10 @@ return {
 
     -- line-column
     lc = " %3l,%-3c",
+
+    codeium = function()
+      return " 󰖝 " .. require("codeium.virtual_text").status_string()
+    end,
 
     -- file encoding
     en = function()
