@@ -35,4 +35,6 @@ return {
     lazy = false,
     opts = {},
   },
+
+  { import = "nvchad.blink.lazyspec" },
 }

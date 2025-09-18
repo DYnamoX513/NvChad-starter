@@ -1,13 +1,19 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
-    -- Modify NvChad's default opts
+    "saghen/blink.cmp",
+    dependencies = {
+      {
+        "Exafunction/windsurf.nvim",
+      },
+    },
     opts = function(_, opts)
-      table.insert(opts.sources, 1, {
-        name = "codeium",
-        group_index = 1,
-        priority = 100,
-      })
+      -- opts.sources.providers = opts.sources.providers or {}
+      -- opts.sources.providers.windsurf = {
+      --   name = "Windsurf",
+      --   module = "codeium.blink",
+      --   async = true,
+      -- }
+      -- table.insert(opts.sources.default, 1, "windsurf")
     end,
   },
   {
