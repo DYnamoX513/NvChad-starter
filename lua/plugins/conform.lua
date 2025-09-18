@@ -25,6 +25,7 @@ return {
 
       sh = { "shfmt" },
       nix = { "alejandra" },
+      yaml = { "yamlfmt" },
     },
 
     default_format_opts = {
