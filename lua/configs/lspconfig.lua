@@ -27,7 +27,7 @@ vim.lsp.config("harper_ls", {
 })
 
 vim.lsp.config("neocmake", {
-  cmd = { "neocmakelsp", "--stdio" },
+  -- cmd = { "neocmakelsp", "--stdio" },
   init_options = {
     format = {
       enable = true,
